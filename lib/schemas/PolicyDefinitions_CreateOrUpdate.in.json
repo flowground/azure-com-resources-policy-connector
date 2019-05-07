@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "policyDefinitionName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The policy definition.",
+            "properties": {
+                "id": {
+                    "description": "The ID of the policy definition.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the policy definition. If you do not specify a value for name, the value is inferred from the name value in the request URI.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "The policy definition properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "description": {
+                            "description": "The policy definition description.",
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "description": "The display name of the policy definition.",
+                            "type": "string"
+                        },
+                        "policyRule": {
+                            "description": "The policy rule.",
+                            "type": "object"
+                        },
+                        "policyType": {
+                            "description": "The type of policy definition. Possible values are NotSpecified, BuiltIn, and Custom.",
+                            "enum": [
+                                "NotSpecified",
+                                "BuiltIn",
+                                "Custom"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "policyType"
+                            }
+                        }
+                    }
+                }
+            },
+            "x-ms-azure-resource": true,
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

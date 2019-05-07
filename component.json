@@ -1,0 +1,301 @@
+{
+    "title": "PolicyClient",
+    "description": "To manage and control access to your resources, you can define customized policies and assign them at a scope.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/resources-policy/2016-04-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "PolicyAssignments_List": {
+            "main": "./lib/actions/PolicyAssignments_List.js",
+            "title": "Gets all the policy assignments for a subscription.",
+            "description": "Gets all the policy assignments for a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyDefinitions_List": {
+            "main": "./lib/actions/PolicyDefinitions_List.js",
+            "title": "Gets all the policy definitions for a subscription.",
+            "description": "Gets all the policy definitions for a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyDefinitions_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyDefinitions_Delete": {
+            "main": "./lib/actions/PolicyDefinitions_Delete.js",
+            "title": "Deletes a policy definition.",
+            "description": "Deletes a policy definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyDefinitions_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyDefinitions_Get": {
+            "main": "./lib/actions/PolicyDefinitions_Get.js",
+            "title": "Gets the policy definition.",
+            "description": "Gets the policy definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyDefinitions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyDefinitions_CreateOrUpdate": {
+            "main": "./lib/actions/PolicyDefinitions_CreateOrUpdate.js",
+            "title": "Creates or updates a policy definition.",
+            "description": "Creates or updates a policy definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyDefinitions_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_ListForResourceGroup": {
+            "main": "./lib/actions/PolicyAssignments_ListForResourceGroup.js",
+            "title": "Gets policy assignments for the resource group.",
+            "description": "Gets policy assignments for the resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_ListForResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_ListForResource": {
+            "main": "./lib/actions/PolicyAssignments_ListForResource.js",
+            "title": "Gets policy assignments for a resource.",
+            "description": "Gets policy assignments for a resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_ListForResource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_DeleteById": {
+            "main": "./lib/actions/PolicyAssignments_DeleteById.js",
+            "title": "Deletes a policy assignment by ID.",
+            "description": "When providing a scope for the assignment, use '/subscriptions/{subscription-id}/' for subscriptions, '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}' for resource groups, and '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider-namespace}/{resource-type}/{resource-name}' for resources.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_DeleteById.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_GetById": {
+            "main": "./lib/actions/PolicyAssignments_GetById.js",
+            "title": "Gets a policy assignment by ID.",
+            "description": "When providing a scope for the assignment, use '/subscriptions/{subscription-id}/' for subscriptions, '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}' for resource groups, and '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider-namespace}/{resource-type}/{resource-name}' for resources.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_GetById.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_CreateById": {
+            "main": "./lib/actions/PolicyAssignments_CreateById.js",
+            "title": "Creates a policy assignment by ID.",
+            "description": "Policy assignments are inherited by child resources. For example, when you apply a policy to a resource group that policy is assigned to all resources in the group. When providing a scope for the assignment, use '/subscriptions/{subscription-id}/' for subscriptions, '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}' for resource groups, and '/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider-namespace}/{resource-type}/{resource-name}' for resources.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_CreateById.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_Delete": {
+            "main": "./lib/actions/PolicyAssignments_Delete.js",
+            "title": "Deletes a policy assignment.",
+            "description": "Deletes a policy assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_Get": {
+            "main": "./lib/actions/PolicyAssignments_Get.js",
+            "title": "Gets a policy assignment.",
+            "description": "Gets a policy assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PolicyAssignments_Create": {
+            "main": "./lib/actions/PolicyAssignments_Create.js",
+            "title": "Creates a policy assignment.",
+            "description": "Policy assignments are inherited by child resources. For example, when you apply a policy to a resource group that policy is assigned to all resources in the group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PolicyAssignments_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

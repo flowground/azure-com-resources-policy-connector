@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "policyAssignmentId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The policy assignment.",
+            "properties": {
+                "id": {
+                    "description": "The ID of the policy assignment.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the policy assignment.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Properties for the policy assignment.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "displayName": {
+                            "description": "The display name of the policy assignment.",
+                            "type": "string"
+                        },
+                        "policyDefinitionId": {
+                            "description": "The ID of the policy definition.",
+                            "type": "string"
+                        },
+                        "scope": {
+                            "description": "The scope for the policy assignment.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": {
+                    "description": "The type of the policy assignment.",
+                    "type": "string"
+                }
+            },
+            "x-ms-azure-resource": true,
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
